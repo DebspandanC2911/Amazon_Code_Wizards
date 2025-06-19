@@ -17,14 +17,14 @@ def clean_text(text):
 
 
 def predict_review(text, category, rating, tfidf, cat_enc, scaler, clf, lbl_enc, idx_cg, threshold=0.30):
-    # Clean input text
+    
     clean = clean_text(text)
-    # Transform features
+   
     X_t = tfidf.transform([clean])
     X_c = cat_enc.transform([[category]])
     X_r = scaler.transform([[rating]])
     sample = hstack([X_t, X_c, X_r])
-    # Predict
+    
     probs = clf.predict_proba(sample)[0]
     trust = probs[idx_cg]
     label = lbl_enc.inverse_transform([np.argmax(probs)])[0]
