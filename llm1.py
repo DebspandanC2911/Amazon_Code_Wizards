@@ -19,7 +19,7 @@ def clean_text(text):
     text = re.sub(r'[^a-zA-Z0-9\s]', '', str(text))
     text = re.sub(r'\s+', ' ', text)
     return text.strip().lower()
-
+# Cleaning my data
 train_df['clean_text'] = train_df['text_'].apply(clean_text)
 test_df ['clean_text'] = test_df ['text_'].apply(clean_text)
 
