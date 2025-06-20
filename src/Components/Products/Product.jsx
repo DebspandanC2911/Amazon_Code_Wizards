@@ -105,7 +105,7 @@ const Product = (props) => {
           <div>
           </div>
         </div>
-        <ProductReviews/>
+        
       </div>
     ))
   )
