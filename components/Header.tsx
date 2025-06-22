@@ -27,6 +27,7 @@ export default function Header() {
             <Link href="/cart" className="hover:underline">
               Cart
             </Link>
+            
           </div>
         </div>
       </div>
@@ -36,7 +37,9 @@ export default function Header() {
         <div className="max-w-7xl mx-auto flex items-center space-x-4">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <div className="bg-white text-black px-3 py-1 rounded font-bold text-xl">amazon</div>
+            <div className="bg-white text-black px-3 py-1 rounded font-bold text-xl">
+              amazon
+            </div>
           </Link>
 
           {/* Location */}
@@ -85,6 +88,22 @@ export default function Header() {
             <Link href="/cart" className="flex items-center space-x-1">
               <ShoppingCart className="w-6 h-6" />
               <span className="font-bold">Cart</span>
+            </Link>
+            <Link
+              href="https://user-filter-phi.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              User Filter
+            </Link>
+            <Link
+              href="https://open-box-delivery.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              Open Box Delivery
             </Link>
           </div>
         </div>

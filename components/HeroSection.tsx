@@ -10,17 +10,15 @@ export default function HeroSection() {
             <br />
             with Alexa
           </h1>
-          <div className="flex items-center mb-6">
-            <Image src="/placeholder.svg?height=40&width=100" alt="Alexa" width={100} height={40} className="mr-4" />
-          </div>
+          
         </div>
         <div className="flex-1 flex justify-end">
           <Image
-            src="/placeholder.svg?height=300&width=400"
-            alt="Amazon Devices"
+            src="https://picsum.photos/400/400?random=0"
+            alt="Echo Show 5"
             width={400}
             height={300}
-            className="rounded-lg"
+            className="rounded-lg shadow-lg"
           />
         </div>
       </div>

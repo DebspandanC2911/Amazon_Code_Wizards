@@ -7,49 +7,49 @@ const categories = [
   {
     title: "Prime Video",
     subtitle: "Try 30 days for free",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "https://picsum.photos/seed/prime-video/300/200",
     link: "/prime-video",
   },
   {
     title: "Customers' most-loved",
     subtitle: "Discover items with 4+ stars",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "https://picsum.photos/seed/most-loved/300/200",
     link: "/most-loved",
   },
   {
     title: "Best Sellers in Outlet",
     subtitle: "Shop now",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "https://picsum.photos/seed/best-sellers/300/200",
     link: "/outlet",
   },
   {
     title: "Amazon exclusive toys",
     subtitle: "See more",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "https://picsum.photos/seed/toys/300/200",
     link: "/toys",
   },
   {
     title: "Small space solutions",
     subtitle: "Shop now",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "https://picsum.photos/seed/small-space/300/200",
     link: "/small-space",
   },
   {
     title: "Save on pre-owned Amazon devices",
     subtitle: "Shop now",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "https://picsum.photos/seed/pre-owned/300/200",
     link: "/pre-owned",
   },
   {
     title: "Live plants & planters",
     subtitle: "Shop now",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "https://picsum.photos/seed/plants/300/200",
     link: "/plants",
   },
   {
     title: "Easy, elevated t-shirts",
     subtitle: "Shop now",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "https://picsum.photos/seed/tshirts/300/200",
     link: "/tshirts",
   },
 ]
@@ -64,7 +64,7 @@ export default function CategoryCards() {
               <h3 className="font-bold text-lg mb-2">{category.title}</h3>
               <div className="mb-4">
                 <Image
-                  src={category.image || "/placeholder.svg"}
+                  src={category.image}
                   alt={category.title}
                   width={300}
                   height={200}
