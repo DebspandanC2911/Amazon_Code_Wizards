@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:5.0
+    container_name: amazon-clone-db
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: amazon_clone
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - amazon-network
+
+  # Python LLM Service
+  python-llm:
+    build:
+      context: .
+      target: python-llm
+    container_name: amazon-clone-llm
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+    depends_on:
+      - mongodb
+    networks:
+      - amazon-network
+
+  # Node.js Backend Server
+  server:
+    build:
+      context: .
+      target: server
+    container_name: amazon-clone-server
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://admin:password123@mongodb:27017/amazon_clone?authSource=admin
+      - JWT_SECRET=your-super-secret-jwt-key-here
+      - LLM_SERVICE_URL=http://python-llm:8000
+    depends_on:
+      - mongodb
+      - python-llm
+    networks:
+      - amazon-network
+
+  # Next.js Frontend Client
+  client:
+    build:
+      context: .
+      target: client
+    container_name: amazon-clone-client
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+    depends_on:
+      - server
+    networks:
+      - amazon-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  amazon-network:
+    driver: bridge
