@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:5.0
+    container_name: amazon-clone-db
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_DATABASE: amazon_clone
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - amazon-network
+
+  # Node.js Backend Server
+  server:
+    build:
+      context: .
+      target: server
+    container_name: amazon-clone-server
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - PORT=5000
+      - MONGO_URI=mongodb://admin:password123@mongodb:27017/amazon_clone?authSource=admin
+      - JWT_SECRET=a707f1ebb8af19f60cff48dd56efdffdd3868a19ed3c28d316599dc54346142424ef3040305ed80c69615baa4813e5d3e0d4a1f290a4f611282e76dc049809a2
+      - GOOGLE_AI_API_KEY=AIzaSyBL1GZFy-nrLv22j0gTlkT8WZXrc0HF-rA
+    depends_on:
+      - mongodb
+    networks:
+      - amazon-network
+
+  # Next.js Frontend Client
+  client:
+    build:
+      context: .
+      target: client
+    container_name: amazon-clone-client
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:5000
+      - NEXT_PUBLIC_APP_URL=http://localhost:3000
+    depends_on:
+      - server
+    networks:
+      - amazon-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  amazon-network:
+    driver: bridge
