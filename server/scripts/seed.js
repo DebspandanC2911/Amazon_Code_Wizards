@@ -61,6 +61,253 @@ const Review = mongoose.model("Review", reviewSchema)
 const User = mongoose.model("User", userSchema)
 const Order = mongoose.model("Order", orderSchema)
 
+// Predefined products that match your image mapping
+const predefinedProducts = [
+  // Electronics
+  {
+    title: "Wireless Bluetooth Headphones",
+    description:
+      "High-quality wireless headphones with active noise cancellation technology. Features 30-hour battery life, premium sound quality, and comfortable over-ear design.",
+    category: "Electronics",
+    imageUrl: "/images/product-headphones.jpg",
+    price: 2999,
+    stock: 50,
+  },
+  {
+    title: "Smart Fitness Watch",
+    description:
+      "Advanced fitness tracking smartwatch with heart rate monitoring, GPS, sleep tracking, and 50+ workout modes. Water-resistant design with 7-day battery life.",
+    category: "Electronics",
+    imageUrl: "/images/product-smartwatch.jpg",
+    price: 8999,
+    stock: 30,
+  },
+  {
+    title: "Gaming Mechanical Keyboard",
+    description:
+      "RGB backlit mechanical keyboard for gaming with tactile switches, programmable keys, and durable aluminum frame.",
+    category: "Electronics",
+    imageUrl: "/images/product-keyboard.jpg",
+    price: 4999,
+    stock: 40,
+  },
+  {
+    title: "Professional Camera Lens",
+    description:
+      "50mm prime lens for professional photography with fast autofocus, image stabilization, and weather sealing.",
+    category: "Electronics",
+    imageUrl: "/images/product-camera-lens.jpg",
+    price: 25999,
+    stock: 15,
+  },
+
+  // Clothing & Fashion
+  {
+    title: "Organic Cotton T-Shirt",
+    description:
+      "Comfortable and sustainable organic cotton t-shirt with premium fabric, perfect fit, and eco-friendly production.",
+    category: "Clothing",
+    imageUrl: "/images/product-tshirt.jpg",
+    price: 799,
+    stock: 100,
+  },
+  {
+    title: "Handmade Steel Keyboard",
+    description: "Premium handcrafted steel mechanical keyboard with custom switches and artisan keycaps.",
+    category: "Electronics",
+    imageUrl: "/images/products/keyboard.jpg",
+    price: 12999,
+    stock: 20,
+  },
+  {
+    title: "Tasty Cotton Shirt",
+    description: "Premium cotton shirt with modern fit, breathable fabric, and stylish design for everyday wear.",
+    category: "Clothing",
+    imageUrl: "/images/products/shirt.jpg",
+    price: 1299,
+    stock: 75,
+  },
+
+  // Home & Kitchen
+  {
+    title: "Coffee Maker Deluxe",
+    description:
+      "Programmable coffee maker with built-in grinder, thermal carafe, and multiple brewing options for perfect coffee every time.",
+    category: "Home",
+    imageUrl: "/images/product-coffee-maker.jpg",
+    price: 12999,
+    stock: 25,
+  },
+  {
+    title: "Yoga Mat Premium",
+    description:
+      "Non-slip premium yoga mat for all your workout needs with extra cushioning and eco-friendly materials.",
+    category: "Sports",
+    imageUrl: "/images/product-yoga-mat.jpg",
+    price: 1499,
+    stock: 75,
+  },
+  {
+    title: "Generic Concrete Table",
+    description: "Modern concrete dining table with sleek design, durable construction, and contemporary style.",
+    category: "Home",
+    imageUrl: "/images/products/table.jpg",
+    price: 15999,
+    stock: 10,
+  },
+
+  // Beauty & Personal Care
+  {
+    title: "Skincare Serum Set",
+    description:
+      "Complete skincare routine with vitamin C serum, hyaluronic acid, and anti-aging ingredients for glowing skin.",
+    category: "Beauty",
+    imageUrl: "/images/product-skincare.jpg",
+    price: 2499,
+    stock: 60,
+  },
+
+  // Food & Beverages
+  {
+    title: "Licensed Frozen Bacon",
+    description:
+      "Premium quality frozen bacon strips, perfectly cured and ready to cook for delicious breakfast meals.",
+    category: "Food",
+    imageUrl: "/images/products/bacon.jpg",
+    price: 599,
+    stock: 200,
+  },
+  {
+    title: "Handcrafted Frozen Cheese",
+    description: "Artisanal frozen cheese selection with rich flavors, perfect for cooking and gourmet meals.",
+    category: "Food",
+    imageUrl: "/images/products/cheese.jpg",
+    price: 899,
+    stock: 150,
+  },
+  {
+    title: "Sleek Cotton Pizza",
+    description: "Gourmet frozen pizza with organic ingredients, artisanal crust, and premium toppings.",
+    category: "Food",
+    imageUrl: "/images/products/pizza.jpg",
+    price: 1299,
+    stock: 80,
+  },
+  {
+    title: "Tasty Wooden Tuna",
+    description: "Premium canned tuna with sustainable fishing practices, rich in protein and omega-3 fatty acids.",
+    category: "Food",
+    imageUrl: "/images/products/tuna.jpg",
+    price: 399,
+    stock: 300,
+  },
+  {
+    title: "Practical Plastic Chicken",
+    description: "Fresh chicken cuts, farm-raised with natural feed, perfect for healthy family meals.",
+    category: "Food",
+    imageUrl: "/images/products/chicken.jpg",
+    price: 699,
+    stock: 120,
+  },
+  {
+    title: "Fantastic Frozen Sausages",
+    description: "Gourmet frozen sausages with authentic spices and premium meat, perfect for grilling.",
+    category: "Food",
+    imageUrl: "/images/products/sausages.jpg",
+    price: 799,
+    stock: 90,
+  },
+  {
+    title: "Unbranded Soft Salad",
+    description: "Fresh mixed greens salad with organic vegetables, perfect for healthy eating.",
+    category: "Food",
+    imageUrl: "/images/products/salad.jpg",
+    price: 299,
+    stock: 180,
+  },
+
+  // Sports & Accessories
+  {
+    title: "Unbranded Fresh Bike",
+    description:
+      "Modern bicycle with lightweight frame, smooth gears, and comfortable riding experience for daily commuting.",
+    category: "Sports",
+    imageUrl: "/images/products/bike.jpg",
+    price: 18999,
+    stock: 15,
+  },
+  {
+    title: "Sleek Soft Gloves",
+    description: "Premium leather gloves with soft lining, perfect for winter weather and elegant style.",
+    category: "Clothing",
+    imageUrl: "/images/products/gloves.jpg",
+    price: 1599,
+    stock: 60,
+  },
+
+  // Clothing
+  {
+    title: "Unbranded Plastic Pants",
+    description: "Waterproof outdoor pants with durable material, perfect for hiking and outdoor activities.",
+    category: "Clothing",
+    imageUrl: "/images/products/pants.jpg",
+    price: 2299,
+    stock: 45,
+  },
+
+  // Additional Electronics
+  {
+    title: "Rustic Soft Keyboard",
+    description: "Vintage-style mechanical keyboard with soft tactile switches and retro design.",
+    category: "Electronics",
+    imageUrl: "/images/products/keyboard-2.jpg",
+    price: 6999,
+    stock: 25,
+  },
+
+  // Additional Food Items
+  {
+    title: "Awesome Concrete Cheese",
+    description: "Aged artisanal cheese with complex flavors, perfect for wine pairing and gourmet cooking.",
+    category: "Food",
+    imageUrl: "/images/products/cheese-2.jpg",
+    price: 1599,
+    stock: 70,
+  },
+  {
+    title: "Ergonomic Wooden Bacon",
+    description: "Thick-cut premium bacon with natural wood smoking for authentic flavor.",
+    category: "Food",
+    imageUrl: "/images/products/bacon-2.jpg",
+    price: 899,
+    stock: 110,
+  },
+  {
+    title: "Handmade Wooden Pizza",
+    description: "Wood-fired artisanal pizza with traditional Italian recipe and fresh ingredients.",
+    category: "Food",
+    imageUrl: "/images/products/pizza-2.jpg",
+    price: 1899,
+    stock: 50,
+  },
+  {
+    title: "Unbranded Rubber Tuna",
+    description: "Sustainably caught tuna with firm texture and rich flavor, perfect for sushi and grilling.",
+    category: "Food",
+    imageUrl: "/images/products/tuna-2.jpg",
+    price: 699,
+    stock: 200,
+  },
+  {
+    title: "Handmade Frozen Sausages",
+    description: "Artisanal frozen sausages made with traditional recipes and premium spices.",
+    category: "Food",
+    imageUrl: "/images/products/sausages-2.jpg",
+    price: 1299,
+    stock: 65,
+  },
+]
+
 function calculateUserRating(user) {
   if (!user.totalOrders || user.totalOrders === 0) {
     return null // New user, no rating
@@ -89,12 +336,11 @@ function calculateUserRating(user) {
 
 function generateBalancedFakeConfidence(reviewText, reviewRating, userRating, isIntentionallyFake = false) {
   if (isIntentionallyFake) {
-    return faker.datatype.number({ min: 65, max: 90 }) // High fake confidence for intentionally fake
+    return faker.datatype.number({ min: 65, max: 90 })
   }
 
-  let confidence = 15 // Lower base confidence
+  let confidence = 15
 
-  // Text-based analysis (more lenient)
   const text = reviewText.toLowerCase()
   const strongFakePatterns = [
     "amazing product highly recommend five stars",
@@ -104,69 +350,47 @@ function generateBalancedFakeConfidence(reviewText, reviewRating, userRating, is
   const moderateFakePatterns = ["amazing product", "highly recommend", "five stars", "perfect quality"]
   const authenticPatterns = ["however", "but", "minor issue", "could be better", "after using", "compared to"]
 
-  // Strong fake patterns (multiple keywords together)
   const strongFakeMatches = strongFakePatterns.filter((pattern) => text.includes(pattern)).length
   confidence += strongFakeMatches * 25
 
-  // Moderate fake patterns
   const moderateFakeMatches = moderateFakePatterns.filter((pattern) => text.includes(pattern)).length
   confidence += moderateFakeMatches * 8
 
-  // Authentic patterns (reduce confidence)
   const authenticMatches = authenticPatterns.filter((pattern) => text.includes(pattern)).length
   confidence -= authenticMatches * 12
 
-  // User rating vs review rating correlation (more balanced)
   if (userRating !== null) {
-    const ratingDifference = Math.abs(userRating - reviewRating)
-
-    // High-rated users giving positive reviews = credible
     if (userRating >= 4.0 && reviewRating >= 4) {
-      confidence -= 10 // Less penalty
+      confidence -= 10
     }
-
-    // Low-rated users giving very positive reviews = suspicious
     if (userRating <= 2.0 && reviewRating >= 4) {
-      confidence += 20 // Moderate penalty
+      confidence += 20
     }
-
-    // High-rated users giving very negative reviews = suspicious
     if (userRating >= 4.0 && reviewRating <= 2) {
-      confidence += 15 // Moderate penalty
+      confidence += 15
     }
-
-    // Low-rated users giving negative reviews = credible
     if (userRating <= 2.5 && reviewRating <= 3) {
       confidence -= 8
     }
-
-    // Extreme rating differences
-    if (ratingDifference >= 3) {
-      confidence += 12
-    }
   } else {
-    // New users are slightly more suspicious
     confidence += 5
   }
 
-  // Review length analysis (more balanced)
   const wordCount = reviewText.split(" ").length
   if (wordCount < 5) {
-    confidence += 15 // Very short reviews
+    confidence += 15
   } else if (wordCount > 50) {
-    confidence -= 8 // Detailed reviews are more credible
+    confidence -= 8
   }
 
-  // Exclamation marks (more lenient)
   const exclamationCount = (reviewText.match(/!/g) || []).length
   if (exclamationCount > 3) {
     confidence += exclamationCount * 3
   }
 
-  return Math.max(5, Math.min(85, confidence)) // Cap at 85% max
+  return Math.max(5, Math.min(85, confidence))
 }
 
-// Diverse review templates with realistic content
 const reviewTemplatesByRating = {
   1: [
     "Terrible product. Broke immediately after opening. Complete waste of money. Would not recommend to anyone.",
@@ -215,7 +439,6 @@ async function seedDatabase() {
     console.log("Starting database seeding...")
     console.log("MONGO_URI:", process.env.MONGO_URI)
 
-    // Connect to MongoDB
     await mongoose.connect(process.env.MONGO_URI || "mongodb://localhost:27017/amazon-clone")
     console.log("Connected to MongoDB")
 
@@ -227,41 +450,28 @@ async function seedDatabase() {
 
     console.log("Cleared existing data")
 
-    // Create 25 products
+    // Create products using predefined list
     const products = []
-    const categories = ["Electronics", "Books", "Clothing", "Home", "Sports", "Beauty"]
-
-    for (let i = 0; i < 25; i++) {
-      const product = await Product.create({
-        title: faker.commerce.productName(),
-        description: faker.commerce.productDescription(),
-        category: faker.random.arrayElement(categories),
-        imageUrl: `/placeholder.svg?height=400&width=400&text=Product${i + 1}`,
-        price: Number.parseFloat(faker.commerce.price(100, 50000)),
-        stock: faker.datatype.number({ min: 10, max: 100 }),
-      })
+    for (const productData of predefinedProducts) {
+      const product = await Product.create(productData)
       products.push(product)
     }
 
-    console.log(`Created ${products.length} products`)
+    console.log(`Created ${products.length} products with proper names and images`)
 
-    // Create users with diverse rating distribution (NO NULL RATINGS)
+    // Create users with diverse rating distribution
     const users = []
-
-    // Create users across all rating ranges (0-5 stars)
     const ratingRanges = [
-      { min: 0.1, max: 1.0, count: 15 }, // Very low rated users
-      { min: 1.0, max: 2.0, count: 20 }, // Low rated users
-      { min: 2.0, max: 3.0, count: 25 }, // Medium-low rated users
-      { min: 3.0, max: 4.0, count: 30 }, // Medium-high rated users
-      { min: 4.0, max: 5.0, count: 35 }, // High rated users
+      { min: 0.1, max: 1.0, count: 15 },
+      { min: 1.0, max: 2.0, count: 20 },
+      { min: 2.0, max: 3.0, count: 25 },
+      { min: 3.0, max: 4.0, count: 30 },
+      { min: 4.0, max: 5.0, count: 35 },
     ]
 
     for (const range of ratingRanges) {
       for (let i = 0; i < range.count; i++) {
         const targetRating = faker.datatype.number({ min: range.min * 10, max: range.max * 10 }) / 10
-
-        // Calculate orders to achieve target rating
         const totalOrders = faker.datatype.number({ min: 5, max: 30 })
         const deliveryRate = Math.max(
           0.3,
@@ -281,7 +491,7 @@ async function seedDatabase() {
           totalOrders,
           deliveredOrders,
           returnedOrders,
-          userRating: targetRating, // ALL USERS HAVE RATINGS
+          userRating: targetRating,
         })
         users.push(user)
       }
@@ -289,54 +499,22 @@ async function seedDatabase() {
 
     console.log(`Created ${users.length} users with diverse ratings (0-5 stars)`)
 
-    // Create 30 reviews per product with balanced rating distribution
+    // Create 30 reviews per product
     let totalReviews = 0
     const balancedRatingDistribution = [
-      1,
-      1,
-      1,
-      1,
-      1,
-      1, // 6 x 1-star (20%)
-      2,
-      2,
-      2,
-      2, // 4 x 2-star (13%)
-      3,
-      3,
-      3,
-      3,
-      3, // 5 x 3-star (17%)
-      4,
-      4,
-      4,
-      4,
-      4,
-      4,
-      4, // 7 x 4-star (23%)
-      5,
-      5,
-      5,
-      5,
-      5,
-      5,
-      5,
-      5, // 8 x 5-star (27%)
+      1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5,
     ]
 
     for (const product of products) {
-      const reviewCount = 30 // Exactly 30 reviews per product
+      const reviewCount = 30
 
       for (let j = 0; j < reviewCount; j++) {
-        const user = faker.random.arrayElement(users) // All users have ratings
+        const user = faker.random.arrayElement(users)
         const reviewRating = faker.random.arrayElement(balancedRatingDistribution)
-
-        // 10% chance of intentionally fake review (reduced from 15%)
         const isIntentionallyFake = faker.datatype.number({ min: 0, max: 100 }) < 10
 
         let reviewText
         if (isIntentionallyFake) {
-          // Fake reviews tend to be overly positive
           reviewText = faker.random.arrayElement(reviewTemplatesByRating[5])
         } else {
           reviewText = faker.random.arrayElement(reviewTemplatesByRating[reviewRating])
@@ -351,13 +529,13 @@ async function seedDatabase() {
 
         await Review.create({
           productId: product._id,
-          userId: user._id, // Always has a user
+          userId: user._id,
           rating: reviewRating,
           reviewText: reviewText,
           purchaseVerified: faker.datatype.boolean(),
           fakeFlag: fakeConfidence > 60,
           fakeConfidence,
-          userRating: user.userRating, // Always has a user rating
+          userRating: user.userRating,
           createdAt: faker.date.recent(90),
         })
         totalReviews++
@@ -373,54 +551,15 @@ async function seedDatabase() {
       { $sort: { _id: 1 } },
     ])
 
-    const userRatingStats = await User.aggregate([
-      {
-        $group: {
-          _id: { $floor: "$userRating" },
-          count: { $sum: 1 },
-          avgRating: { $avg: "$userRating" },
-        },
-      },
-      { $sort: { _id: 1 } },
-    ])
-
     const fakeReviewCount = await Review.countDocuments({ fakeFlag: true })
-    const confidenceStats = await Review.aggregate([
-      {
-        $group: {
-          _id: {
-            $switch: {
-              branches: [
-                { case: { $lt: ["$fakeConfidence", 20] }, then: "Very Low (0-19%)" },
-                { case: { $lt: ["$fakeConfidence", 40] }, then: "Low (20-39%)" },
-                { case: { $lt: ["$fakeConfidence", 60] }, then: "Medium (40-59%)" },
-                { case: { $lt: ["$fakeConfidence", 80] }, then: "High (60-79%)" },
-              ],
-              default: "Very High (80%+)",
-            },
-          },
-          count: { $sum: 1 },
-        },
-      },
-      { $sort: { _id: 1 } },
-    ])
 
     console.log(`\nReview Rating Distribution:`)
     ratingStats.forEach((stat) => {
       console.log(`- ${stat._id} stars: ${stat.count} reviews`)
     })
 
-    console.log(`\nUser Rating Distribution:`)
-    userRatingStats.forEach((stat) => {
-      console.log(`- ${stat._id}-${stat._id + 1} stars: ${stat.count} users (avg: ${stat.avgRating.toFixed(1)})`)
-    })
-
-    console.log(`\nFake Detection Distribution:`)
-    confidenceStats.forEach((stat) => {
-      console.log(`- ${stat._id}: ${stat.count} reviews`)
-    })
-
     console.log(`\nOverall Stats:`)
+    console.log(`- Total products: ${products.length}`)
     console.log(`- Total reviews: ${totalReviews}`)
     console.log(`- Fake reviews detected: ${fakeReviewCount}`)
     console.log(`- Fake percentage: ${((fakeReviewCount / totalReviews) * 100).toFixed(1)}%`)
@@ -432,5 +571,4 @@ async function seedDatabase() {
   }
 }
 
-// Run the seed function
 seedDatabase()

@@ -12,72 +12,73 @@ interface ProductCardProps {
   product: Product
 }
 
-// Updated comprehensive product image mapping
-const productImageMap: { [key: string]: string } = {
-  // Exact product name matches from the API
-  "unbranded plastic pants": "/images/products/pants.jpg",
-  "handmade steel keyboard": "/images/products/keyboard.jpg",
-  "licensed frozen bacon": "/images/products/bacon.jpg",
-  "handcrafted frozen cheese": "/images/products/cheese.jpg",
-  "unbranded fresh bike": "/images/products/bike.jpg",
-  "rustic soft keyboard": "/images/products/keyboard-2.jpg",
-  "awesome concrete cheese": "/images/products/cheese-2.jpg",
-  "tasty cotton shirt": "/images/products/shirt.jpg",
-  "ergonomic wooden bacon": "/images/products/bacon-2.jpg",
-  "sleek cotton pizza": "/images/products/pizza.jpg",
-  "generic concrete table": "/images/products/table.jpg",
-  "sleek soft gloves": "/images/products/gloves.jpg",
-  "tasty wooden tuna": "/images/products/tuna.jpg",
-  "unbranded plastic bacon": "/images/products/bacon-3.jpg",
-  "unbranded rubber tuna": "/images/products/tuna-2.jpg",
-  "practical plastic chicken": "/images/products/chicken.jpg",
-  "handmade wooden pizza": "/images/products/pizza-2.jpg",
-  "fantastic frozen sausages": "/images/products/sausages.jpg",
-  "unbranded soft salad": "/images/products/salad.jpg",
-  "handmade frozen sausages": "/images/products/sausages-2.jpg",
+function getProductImage(title: string, imageUrl?: string): string {
+  // If product already has a proper imageUrl from database, use it
+  if (imageUrl && imageUrl !== "/placeholder.svg?height=300&width=300" && !imageUrl.includes("placeholder")) {
+    return imageUrl
+  }
 
-  // Original products
-  "wireless bluetooth headphones": "/images/product-headphones.jpg",
-  "smart fitness watch": "/images/product-smartwatch.jpg",
-  "organic cotton t-shirt": "/images/product-tshirt.jpg",
-  "professional camera lens": "/images/product-camera-lens.jpg",
-  "yoga mat premium": "/images/product-yoga-mat.jpg",
-  "coffee maker deluxe": "/images/product-coffee-maker.jpg",
-  "gaming mechanical keyboard": "/images/product-keyboard.jpg",
-  "skincare serum set": "/images/product-skincare.jpg",
-}
-
-function getProductImage(title: string): string {
   const titleLower = title.toLowerCase().trim()
+
+  // Comprehensive product image mapping
+  const productImageMap: { [key: string]: string } = {
+    // Exact matches from seeded data
+    "wireless bluetooth headphones": "/images/product-headphones.jpg",
+    "smart fitness watch": "/images/product-smartwatch.jpg",
+    "gaming mechanical keyboard": "/images/product-keyboard.jpg",
+    "professional camera lens": "/images/product-camera-lens.jpg",
+    "organic cotton t-shirt": "/images/product-tshirt.jpg",
+    "handmade steel keyboard": "/images/products/keyboard.jpg",
+    "tasty cotton shirt": "/images/products/shirt.jpg",
+    "coffee maker deluxe": "/images/product-coffee-maker.jpg",
+    "yoga mat premium": "/images/product-yoga-mat.jpg",
+    "generic concrete table": "/images/products/table.jpg",
+    "skincare serum set": "/images/product-skincare.jpg",
+    "licensed frozen bacon": "/images/products/bacon.jpg",
+    "handcrafted frozen cheese": "/images/products/cheese.jpg",
+    "sleek cotton pizza": "/images/products/pizza.jpg",
+    "tasty wooden tuna": "/images/products/tuna.jpg",
+    "practical plastic chicken": "/images/products/chicken.jpg",
+    "fantastic frozen sausages": "/images/products/sausages.jpg",
+    "unbranded soft salad": "/images/products/salad.jpg",
+    "unbranded fresh bike": "/images/products/bike.jpg",
+    "sleek soft gloves": "/images/products/gloves.jpg",
+    "unbranded plastic pants": "/images/products/pants.jpg",
+    "rustic soft keyboard": "/images/products/keyboard-2.jpg",
+    "awesome concrete cheese": "/images/products/cheese-2.jpg",
+    "ergonomic wooden bacon": "/images/products/bacon-2.jpg",
+    "handmade wooden pizza": "/images/products/pizza-2.jpg",
+    "unbranded rubber tuna": "/images/products/tuna-2.jpg",
+    "handmade frozen sausages": "/images/products/sausages-2.jpg",
+  }
 
   // First try exact match
   if (productImageMap[titleLower]) {
     return productImageMap[titleLower]
   }
 
-  // Then try keyword matching with more specific patterns
+  // Then try keyword matching
   const keywords = [
-    { words: ["pants", "trouser"], image: "/images/products/pants.jpg" },
-    { words: ["keyboard"], image: "/images/products/keyboard.jpg" },
+    { words: ["wireless", "bluetooth", "headphones"], image: "/images/product-headphones.jpg" },
+    { words: ["smart", "fitness", "watch"], image: "/images/product-smartwatch.jpg" },
+    { words: ["gaming", "mechanical", "keyboard"], image: "/images/product-keyboard.jpg" },
+    { words: ["camera", "lens", "professional"], image: "/images/product-camera-lens.jpg" },
+    { words: ["organic", "cotton", "t-shirt", "shirt"], image: "/images/product-tshirt.jpg" },
+    { words: ["coffee", "maker"], image: "/images/product-coffee-maker.jpg" },
+    { words: ["yoga", "mat"], image: "/images/product-yoga-mat.jpg" },
+    { words: ["skincare", "serum"], image: "/images/product-skincare.jpg" },
     { words: ["bacon"], image: "/images/products/bacon.jpg" },
     { words: ["cheese"], image: "/images/products/cheese.jpg" },
-    { words: ["bike", "bicycle"], image: "/images/products/bike.jpg" },
-    { words: ["shirt", "tshirt", "t-shirt"], image: "/images/products/shirt.jpg" },
     { words: ["pizza"], image: "/images/products/pizza.jpg" },
-    { words: ["table", "desk"], image: "/images/products/table.jpg" },
-    { words: ["gloves"], image: "/images/products/gloves.jpg" },
-    { words: ["tuna", "fish"], image: "/images/products/tuna.jpg" },
+    { words: ["tuna"], image: "/images/products/tuna.jpg" },
     { words: ["chicken"], image: "/images/products/chicken.jpg" },
     { words: ["sausage"], image: "/images/products/sausages.jpg" },
     { words: ["salad"], image: "/images/products/salad.jpg" },
-    { words: ["headphones", "bluetooth", "wireless"], image: "/images/product-headphones.jpg" },
-    { words: ["watch", "smartwatch", "fitness"], image: "/images/product-smartwatch.jpg" },
-    { words: ["cotton", "organic"], image: "/images/product-tshirt.jpg" },
-    { words: ["lens", "camera"], image: "/images/product-camera-lens.jpg" },
-    { words: ["yoga", "mat"], image: "/images/product-yoga-mat.jpg" },
-    { words: ["coffee", "maker"], image: "/images/product-coffee-maker.jpg" },
-    { words: ["gaming", "mechanical"], image: "/images/product-keyboard.jpg" },
-    { words: ["skincare", "serum", "beauty"], image: "/images/product-skincare.jpg" },
+    { words: ["bike", "bicycle"], image: "/images/products/bike.jpg" },
+    { words: ["gloves"], image: "/images/products/gloves.jpg" },
+    { words: ["pants", "trouser"], image: "/images/products/pants.jpg" },
+    { words: ["table", "desk"], image: "/images/products/table.jpg" },
+    { words: ["keyboard"], image: "/images/products/keyboard.jpg" },
   ]
 
   for (const keyword of keywords) {
@@ -86,13 +87,13 @@ function getProductImage(title: string): string {
     }
   }
 
-  // Fallback to a default product image
-  return "/images/products/default-product.png"
+  // Fallback to default product image
+  return "/images/products/default-product.jpg"
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
   const [imageError, setImageError] = useState(false)
-  const productImage = getProductImage(product.title)
+  const productImage = getProductImage(product.title, product.imageUrl)
 
   const addToCart = async () => {
     try {
@@ -101,7 +102,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ productId: product._id, quantity: 1 }),
       })
-      // Show success message
+      // Show success message or update cart count
     } catch (error) {
       console.error("Error adding to cart:", error)
     }
