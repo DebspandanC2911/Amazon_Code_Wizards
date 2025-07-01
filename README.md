@@ -1,4 +1,4 @@
-# 🛡 Trusted Marketplace Solutions - Hackathon Prototype
+#  Trusted Marketplace Solutions - Amazon HAckOn Season 5 Prototype (*Code Wizards*)
 
 This project is developed as a prototype submission for a Hackathon to improve user trust and transparency in e-commerce platforms like Amazon.
 
@@ -26,9 +26,9 @@ This empowers sellers with higher credibility to attract more buyers and *helps 
 ---
 
 ### 2. 🛑 *Fake Review Detection Model*
-We use *Hugging Face Transformers* and custom logic to:
+We use *Gemini AI* and custom logic to:
 - *Block reviews* from users who haven't purchased the product
-- Analyze and *label reviews* as Potential Spam using a pretrained NLP model
+- Analyze and *label reviews* as Potential Spam 
 - Improve the authenticity of product feedback shown to customers
 
 > 📌 Only verified buyers can submit reviews.
