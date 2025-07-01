@@ -1,19 +1,20 @@
 #  Trusted Marketplace Solutions - Amazon HackOn Season 5 Prototype (*Code Wizards*)
 
-This project is developed as a prototype submission for a Hackathon to improve user trust and transparency in e-commerce platforms like Amazon.
+This project is developed as a prototype submission for Amazon HackOn Season 5 to improve user trust and transparency in Amazon e-commerce platform.
 
 ## 🚀 Overview
 
-The goal of this project is to enhance buyer and seller experiences by increasing transparency and minimizing fraudulent behavior. We propose the following four core features:
+The goal of this project is to enhance buyer and seller experiences by increasing transparency and minimizing fraudulent behavior. We propose the following three core features:
 
 ---
 
 ## 🔧 Features
 
-### 1. 🏷 *Seller-Based User Rating System*
+### 1. 🏷 *User Rating System*
 A feature that rates customers based on:
-- frequency of return
+- Purchase Power
 - Return behaviour
+- Fraudulent Activitites
 
 This empowers sellers with higher credibility to attract more buyers and *helps Amazon identify and promote trusted buyers*.
 
@@ -72,7 +73,7 @@ This helps reduce *return frauds* and *boosts buyer confidence*.
 
 ## 🧠 Team and Credits
 
-Built with ❤ by *Code Wizards* for **Amazon HackOn Season 5 - 2025** .  
+Built with ❤ by *Code Wizards* - for **Amazon HackOn Season 5 - 2025** .  
 
 
 
