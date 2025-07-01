@@ -17,6 +17,12 @@ A feature that rates customers based on:
 
 This empowers sellers with higher credibility to attract more buyers and *helps Amazon identify and promote trusted buyers*.
 
+![image](https://github.com/user-attachments/assets/7fcdb0f4-2d26-4ddd-83ae-8bf367bca830)
+![image](https://github.com/user-attachments/assets/7fb995ff-b775-4011-b4f8-ce73d7b77815)
+![image](https://github.com/user-attachments/assets/3ab9d00d-506d-4873-ae64-acb24bcb8f4f)
+
+[Demo](https://user-filter-phi.vercel.app/)
+
 ---
 
 ### 2. 🛑 *Fake Review Detection Model*
@@ -27,6 +33,8 @@ We use *Hugging Face Transformers* and custom logic to:
 
 > 📌 Only verified buyers can submit reviews.
 
+![image](https://github.com/user-attachments/assets/ed43d15c-d326-4b81-926e-15c332f54ab5)
+
 ---
 
 ### 3. 📦 *Open Box Delivery Option*
@@ -36,14 +44,11 @@ Added an option during checkout where customers can:
 
 This helps reduce *return frauds* and *boosts buyer confidence*.
 
----
+![image](https://github.com/user-attachments/assets/dd39fdef-4115-4885-8c5d-d7b650e87529)
+![image](https://github.com/user-attachments/assets/a0322601-6528-424f-973a-b199e73a3e40)
+![image](https://github.com/user-attachments/assets/e053b168-81da-4cf9-8303-f9aa75ad255a)
 
-### 4. 🖼 *Image-Based Anomaly Detection*
-An ML-powered feature that:
-- Allows customers to upload product images during Open Box delivery
-- Compares uploaded images with catalog images using a CNN-based anomaly detection model
-
-> Ensures visual integrity of the product at the point of delivery.
+[Demo](https://open-box-delivery.vercel.app/)
 
 ---
 
@@ -52,22 +57,22 @@ An ML-powered feature that:
 - *Frontend*: React.js, Tailwind CSS
 - *Backend*: Node.js, Express.js
 - *Database*: MongoDB
-- *ML/NLP*: Python, Hugging Face Transformers (BERT-based spam detection)
-- *CV Model*: TensorFlow/Keras for image anomaly detection
-- *Other Tools*: Firebase (for prototype sync), Git
+- *ML/NLP*: Python, Google Gemini Pro Vision, Gemini APIs for Fake Review Detection
+- *Other Tools*: Firebase (for prototype sync and Login), Git
 
 ---
 
 ## ✅ Future Improvements
 
-- Improve image comparison accuracy using Vision Transformers (ViT).
-- Automatically flags anomalies like *physical damage, missing parts, or wrong items*
+- Real-Time Apparel Size Estimation 
+- Shell Company Review Detection
+- Dynamic Multi-Parameter Rating System
 
 ---
 
 ## 🧠 Team and Credits
 
-Built with ❤ by Code Wizards for Amazon HackOn Season 5 - 2025.  
+Built with ❤ by *Code Wizards* for **Amazon HackOn Season 5 - 2025** .  
 
 
 
