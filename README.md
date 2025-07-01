@@ -1,4 +1,4 @@
-#  Trusted Marketplace Solutions - Amazon HAckOn Season 5 Prototype (*Code Wizards*)
+#  Trusted Marketplace Solutions - Amazon HackOn Season 5 Prototype (*Code Wizards*)
 
 This project is developed as a prototype submission for a Hackathon to improve user trust and transparency in e-commerce platforms like Amazon.
 
